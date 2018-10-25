@@ -1,10 +1,9 @@
 <template>
   <div id="show-blogs">
-    <h1>All Blog Articles</h1>
+    <h1>List Blog Titles</h1>
     <input type="text" v-model="search" placeholder="Search..."> 
     <div v-for="blog in filteredBlogs" class="single-blog">
-      <router-link :to="'/blog/' + blog.id"><h2>{{ blog.title | toUpperCase }}</h2></router-link>
-      <p>{{ blog.body | snippet }}</p>
+      <h2>{{ blog.title | toUpperCase }}</h2>
     </div>
   </div>
 </template>
@@ -12,6 +11,7 @@
 
 <script>
 import searchMixin from '@/mixins/searchMixin';
+
   export default{
     data(){
       return {
@@ -27,9 +27,6 @@ import searchMixin from '@/mixins/searchMixin';
         .then(function(data){
           this.blogs = data.body.slice(0,10);
         })
-    },
-    computed:{
-      
     },
     //register the filter locally
     filters:{
